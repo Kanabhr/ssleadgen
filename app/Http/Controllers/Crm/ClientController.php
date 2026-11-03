@@ -417,7 +417,7 @@ class ClientController extends Controller
     public function loginClientsData(Request $request): JsonResponse
     {
         try {
-             $query = $this->deduplicatedClientQuery('login');
+            $query = Client::loginClients()->with(['leadSource', 'policies']);
             $totalRecords = (clone $query)->count();
 
             // Apply search filters
@@ -1611,4 +1611,3 @@ class ClientController extends Controller
     }
 
 }
-
